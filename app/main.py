@@ -1,3 +1,4 @@
-# addition function
+''' Calculator '''
 def addition(a,b):
-	return a + b
+    ''' Addition Function '''
+    return a + b
