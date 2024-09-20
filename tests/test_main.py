@@ -21,4 +21,3 @@ def test_division_by_zero_exception():
     '''Division Function testing that I get the exception divide by zero'''
     with pytest.raises(ZeroDivisionError):
         division(10, 0)
-        
