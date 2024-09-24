@@ -5,7 +5,7 @@ from app.calculator import Calculator
 @pytest.fixture
 def calc():
     """Fixture to create a Calculator instance."""
-    return Calculator()
+    return Calculator.create()
 
 # Parameterized test for addition
 @pytest.mark.parametrize("a, b, expected", [
@@ -56,6 +56,6 @@ def test_division(calc, a, b, expected):
     (0, 0, ZeroDivisionError),
 ])
 def test_division_by_zero(calc, a, b, exception):
-    """Test division method for division by zero."""
+    """Test division method for py tdivision by zero."""
     with pytest.raises(exception):
         calc.divide(a, b)

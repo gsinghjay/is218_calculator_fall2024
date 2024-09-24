@@ -5,6 +5,10 @@ from app.operations import addition, subtraction, multiplication, division
 class Calculator:
     """Calculator Class that uses functions from operations module"""
 
+    @staticmethod
+    def create():
+        return Calculator()
+
     def add(self, a, b):
         """Add two numbers using the addition function from operations module."""
         return addition(a, b)
