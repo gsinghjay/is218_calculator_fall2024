@@ -5,7 +5,7 @@ from app.operations import addition, subtraction, multiplication, division
 class Calculator:
     """Calculator Class that uses functions from operations module"""
 
-    @staticmethod
+    @staticmethod # do not have to instantiate a class
     def create():
         return Calculator()
 
