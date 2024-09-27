@@ -1,5 +1,5 @@
 import pytest
-from app.calculator import lculator
+from app.calculator import Calculator
 
 # Fixture for the Calculator instance
 @pytest.fixture
@@ -52,8 +52,8 @@ def test_division(calc, a, b, expected):
 
 # Parameterized test for division by zero
 @pytest.mark.parametrize("a, b, exception", [
-    (10, 0, ValueError),
-    (0, 0, ValueError),
+    (10, 0, ZeroDivisionError),
+    (0, 0, ZeroDivisionError),
 ])
 def test_division_by_zero(calc, a, b, exception):
     """Test division method for division by zero."""
