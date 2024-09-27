@@ -1,4 +1,4 @@
-# calculator.py
+''' Calculator '''
 from app.operations import addition, subtraction, multiplication, division
 
 class Calculator:

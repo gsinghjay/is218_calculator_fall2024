@@ -7,7 +7,7 @@ from app.calculator import Calculator
 @pytest.fixture
 def calc_fixture():
     """Fixture to create a Calculator instance."""
-    return Calculator()
+    return Calculator.create()
 
 # Parameterized test for addition
 @pytest.mark.parametrize("a, b, expected", [
@@ -61,3 +61,4 @@ def test_division_by_zero(calc_fixture, a, b, exception):
     """Test division method for division by zero."""
     with pytest.raises(exception):
         calc_fixture.divide(a, b)
+
