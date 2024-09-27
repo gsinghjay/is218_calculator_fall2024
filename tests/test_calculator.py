@@ -1,10 +1,11 @@
+# pylint: disable=redefined-outer-name
 ''' Calculator '''
 import pytest
 from app.calculator import Calculator
 
 # Fixture for the Calculator instance
 @pytest.fixture
-def calc():
+def calc_fixture():
     """Fixture to create a Calculator instance."""
     return Calculator()
 
@@ -15,9 +16,9 @@ def calc():
     (0, 0, 0),
     (1.5, 2.5, 4.0),
 ])
-def test_addition(calc, a, b, expected):
+def test_addition(calc_fixture, a, b, expected):
     """Test addition method of Calculator."""
-    assert calc.add(a, b) == expected
+    assert calc_fixture.add(a, b) == expected
 
 # Parameterized test for subtraction
 @pytest.mark.parametrize("a, b, expected", [
@@ -26,9 +27,9 @@ def test_addition(calc, a, b, expected):
     (0, 5, -5),
     (5.5, 2.5, 3.0),
 ])
-def test_subtraction(calc, a, b, expected):
+def test_subtraction(calc_fixture, a, b, expected):
     """Test subtraction method of Calculator."""
-    assert calc.subtract(a, b) == expected
+    assert calc_fixture.subtract(a, b) == expected
 
 # Parameterized test for multiplication
 @pytest.mark.parametrize("a, b, expected", [
@@ -37,9 +38,9 @@ def test_subtraction(calc, a, b, expected):
     (0, 100, 0),
     (2.5, 4, 10.0),
 ])
-def test_multiplication(calc, a, b, expected):
+def test_multiplication(calc_fixture, a, b, expected):
     """Test multiplication method of Calculator."""
-    assert calc.multiply(a, b) == expected
+    assert calc_fixture.multiply(a, b) == expected
 
 # Parameterized test for division
 @pytest.mark.parametrize("a, b, expected", [
@@ -47,16 +48,16 @@ def test_multiplication(calc, a, b, expected):
     (-4, -2, 2),
     (5, 2, 2.5),
 ])
-def test_division(calc, a, b, expected):
+def test_division(calc_fixture, a, b, expected):
     """Test division method of Calculator."""
-    assert calc.divide(a, b) == expected
+    assert calc_fixture.divide(a, b) == expected
 
 # Parameterized test for division by zero
 @pytest.mark.parametrize("a, b, exception", [
     (10, 0, ZeroDivisionError),
     (0, 0, ZeroDivisionError),
 ])
-def test_division_by_zero(calc, a, b, exception):
+def test_division_by_zero(calc_fixture, a, b, exception):
     """Test division method for division by zero."""
     with pytest.raises(exception):
-        calc.divide(a, b)
+        calc_fixture.divide(a, b)
