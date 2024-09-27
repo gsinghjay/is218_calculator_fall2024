@@ -61,4 +61,3 @@ def test_division_by_zero(calc_fixture, a, b, exception):
     """Test division method for division by zero."""
     with pytest.raises(exception):
         calc_fixture.divide(a, b)
-
