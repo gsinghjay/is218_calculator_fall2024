@@ -9,7 +9,7 @@ import sys
 def test_repl_addition(repl):
     """Test addition operation in the REPL."""
     repl.sendline('add 10 5')
-    repl.expect('Result: 15\.0')
+    repl.expect(r'Result: 15\.0')
     repl.sendline('exit')
     repl.expect('Goodbye!')
     repl.expect(pexpect.EOF)
@@ -34,7 +34,7 @@ def test_repl_invalid_command(repl):
 def test_repl_division_by_zero(repl):
     """Test division by zero handling."""
     repl.sendline('divide 10 0')
-    repl.expect('Error: Division by zero\.')
+    repl.expect(r'Error: Division by zero\.')
     repl.sendline('exit')
     repl.expect('Goodbye!')
     repl.expect(pexpect.EOF)
@@ -42,7 +42,7 @@ def test_repl_division_by_zero(repl):
 def test_repl_invalid_numbers(repl):
     """Test handling of invalid numeric input."""
     repl.sendline('add ten five')
-    repl.expect('Invalid numbers\. Please enter valid numeric values\.')
+    repl.expect(r'Invalid numbers\. Please enter valid numeric values\.')
     repl.sendline('exit')
     repl.expect('Goodbye!')
     repl.expect(pexpect.EOF)
@@ -50,13 +50,13 @@ def test_repl_invalid_numbers(repl):
 def test_repl_multiple_operations(repl):
     """Test multiple operations in a single REPL session."""
     repl.sendline('add 1 2')
-    repl.expect('Result: 3\.0')
+    repl.expect(r'Result: 3\.0')
     repl.sendline('subtract 5 3')
-    repl.expect('Result: 2\.0')
+    repl.expect(r'Result: 2\.0')
     repl.sendline('multiply 4 2')
-    repl.expect('Result: 8\.0')
+    repl.expect(r'Result: 8\.0')
     repl.sendline('divide 9 3')
-    repl.expect('Result: 3\.0')
+    repl.expect(r'Result: 3\.0')
     repl.sendline('exit')
     repl.expect('Goodbye!')
     repl.expect(pexpect.EOF)
@@ -81,7 +81,7 @@ def repl():
 def test_repl_addition(repl):
     """Test addition operation in the REPL."""
     repl.sendline('add 10 5')
-    repl.expect('Result: 15\.0')
+    repl.expect(r'Result: 15\.0')
     repl.sendline('exit')
     repl.expect('Goodbye!')
     repl.expect(pexpect.EOF)
@@ -106,7 +106,7 @@ def test_repl_invalid_command(repl):
 def test_repl_division_by_zero(repl):
     """Test division by zero handling."""
     repl.sendline('divide 10 0')
-    repl.expect('Error: Division by zero\.')
+    repl.expect(r'Error: Division by zero\.')
     repl.sendline('exit')
     repl.expect('Goodbye!')
     repl.expect(pexpect.EOF)
@@ -114,7 +114,7 @@ def test_repl_division_by_zero(repl):
 def test_repl_invalid_numbers(repl):
     """Test handling of invalid numeric input."""
     repl.sendline('add ten five')
-    repl.expect('Invalid numbers\. Please enter valid numeric values\.')
+    repl.expect(r'Invalid numbers\. Please enter valid numeric values\.')
     repl.sendline('exit')
     repl.expect('Goodbye!')
     repl.expect(pexpect.EOF)
@@ -122,13 +122,13 @@ def test_repl_invalid_numbers(repl):
 def test_repl_multiple_operations(repl):
     """Test multiple operations in a single REPL session."""
     repl.sendline('add 1 2')
-    repl.expect('Result: 3\.0')
+    repl.expect(r'Result: 3\.0')
     repl.sendline('subtract 5 3')
-    repl.expect('Result: 2\.0')
+    repl.expect(r'Result: 2\.0')
     repl.sendline('multiply 4 2')
-    repl.expect('Result: 8\.0')
+    repl.expect(r'Result: 8\.0')
     repl.sendline('divide 9 3')
-    repl.expect('Result: 3\.0')
+    repl.expect(r'Result: 3\.0')
     repl.sendline('exit')
     repl.expect('Goodbye!')
     repl.expect(pexpect.EOF)
