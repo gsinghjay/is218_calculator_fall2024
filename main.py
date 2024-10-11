@@ -76,6 +76,8 @@ Available commands:
   history        - Shows the operation history
   undo           - Undoes the last operation
   clear          - Clears the operation history
+  save           - Saves the operation history to a file
+  load           - Loads the operation history from a file
   exit           - Exits the REPL
   help           - Shows this help message
 """)
