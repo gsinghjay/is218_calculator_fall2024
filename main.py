@@ -102,6 +102,22 @@ Available commands:
         """Clears the operation history."""
         self.calculator.clear_history()
         print("History cleared.")
+        
+    def save_history(self) -> None:
+        """Saves the operation history to a file."""
+        history = self.calculator.get_history()
+        history_data = "\n".join(str(command.operation) for command in history)
+        self.file_manager.write_file(history_data)
+        print("History saved to file.")
+
+    def load_history(self) -> None:
+        """Loads the operation history from a file."""
+        try:
+            history_data = self.file_manager.read_file()
+            print("Loaded history from file:")
+            print(history_data)
+        except FileNotFoundError:
+            print("No history file found.")
 
 def main():
     processor = CommandProcessor()
