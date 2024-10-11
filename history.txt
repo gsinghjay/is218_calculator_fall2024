@@ -1,0 +1,2 @@
+Addition: 2.0 + 3.0 = 5.0
+Multiplication: 3.0 * 4.0 = 12.0
