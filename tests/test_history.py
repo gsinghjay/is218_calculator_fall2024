@@ -1,7 +1,10 @@
-import pytest
+"""
+Tests for the HistoryManager and OperationCommand classes.
+"""
+
 from unittest.mock import Mock
 from app.calculation import Calculation
-from app.history_manager import OperationCommand, HistoryManager  # Assuming HistoryManager is in 'history_manager'
+from app.history_manager import OperationCommand, HistoryManager
 
 # Test OperationCommand
 def test_operation_command_execution():

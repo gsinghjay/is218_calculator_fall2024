@@ -2,6 +2,7 @@ from app.calculation import Addition, Subtraction, Multiplication, Division
 from app.calculator import Calculator
 from typing import Dict, Type
 from app.history_manager import HistoryManager
+from app.file_manager import FileManager
 
 # Dictionary mapping operation strings to the corresponding calculation class.
 operations_map: Dict[str, Type] = {
@@ -21,6 +22,7 @@ class CommandProcessor:
     def __init__(self) -> None:
         """Initializes the CommandProcessor with a Calculator instance."""
         self.calculator = Calculator()
+        self.file_manager = FileManager("history.txt") 
 
     def execute(self, command: str) -> None:
         """
@@ -72,6 +74,8 @@ Available commands:
   subtract a b   - Subtracts b from a
   multiply a b   - Multiplies a and b
   divide a b     - Divides a by b
+  save           - Saves the operation history to a file
+  load           - Loads the operation history from a file
   history        - Shows the operation history
   undo           - Undoes the last operation
   clear          - Clears the operation history
@@ -101,6 +105,22 @@ Available commands:
         self.calculator.clear_history()
         print("History cleared.")
 
+    def save_history(self) -> None:
+        """Saves the operation history to a file."""
+        history = self.calculator.get_history()
+        history_data = "\n".join(str(command.operation) for command in history)
+        self.file_manager.write_file(history_data)
+        print("History saved to file.")
+
+    def load_history(self) -> None:
+        """Loads the operation history from a file."""
+        try:
+            history_data = self.file_manager.read_file()
+            print("Loaded history from file:")
+            print(history_data)
+        except FileNotFoundError:
+            print("No history file found.")
+
 def main():
     processor = CommandProcessor()
     print("Welcome to the Calculator REPL. Type 'help' for instructions or 'exit' to quit.")
@@ -113,6 +133,10 @@ def main():
             break
         elif command == 'help':
             processor.show_help()
+        elif command == 'save':
+            processor.save_history()
+        elif command == 'load':
+            processor.load_history()
         elif command == 'history':
             processor.show_history()
         elif command == 'undo':
