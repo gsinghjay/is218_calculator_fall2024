@@ -2,6 +2,7 @@ from app.calculation import Addition, Subtraction, Multiplication, Division
 from app.calculator import Calculator
 from typing import Dict, Type
 from app.history_manager import HistoryManager
+from app.file_manager import FileManager
 
 # Dictionary mapping operation strings to the corresponding calculation class.
 operations_map: Dict[str, Type] = {
@@ -21,6 +22,7 @@ class CommandProcessor:
     def __init__(self) -> None:
         """Initializes the CommandProcessor with a Calculator instance."""
         self.calculator = Calculator()
+        self.file_manager = FileManager("history.txt") 
 
     def execute(self, command: str) -> None:
         """
