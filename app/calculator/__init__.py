@@ -1,25 +1,56 @@
-''' Calculator '''
-from app.operations import addition, subtraction, multiplication, division
+from typing import List, Union
+from app.calculation import Calculation
+from app.history_manager import HistoryManager, OperationCommand
+from app.operations import Number
+
 
 class Calculator:
-    """Calculator Class that uses functions from operations module"""
+    """
+    The Calculator class ties together operations and their history.
+    
+    This class allows performing operations, managing the operation history, and undoing actions.
 
-    @staticmethod # do not have to instantiate a class
-    def create():
-        return Calculator()
+    Attributes:
+    history_manager (HistoryManager): Manages the history of operations.
+    """
 
-    def add(self, a, b):
-        """Add two numbers using the addition function from operations module."""
-        return addition(a, b)
+    def __init__(self) -> None:
+        """Initializes the Calculator with a history manager."""
+        self.history_manager = HistoryManager()
 
-    def subtract(self, a, b):
-        """Subtract two numbers using the subtraction function from operations module."""
-        return subtraction(a, b)
+    def perform_operation(self, operation: 'Calculation') -> Number:
+        """
+        Perform the calculation and store it in history.
 
-    def multiply(self, a, b):
-        """Multiply two numbers using the multiplication function from operations module."""
-        return multiplication(a, b)
+        Args:
+        operation (Calculation): The calculation to perform.
 
-    def divide(self, a, b):
-        """Divide two numbers using the division function from operations module."""
-        return division(a, b)
+        Returns:
+        Number: The result of the calculation.
+        """
+        command = OperationCommand(operation)
+        result = command.execute()
+        self.history_manager.add_to_history(command)
+        return result
+
+    def get_history(self) -> List['OperationCommand']:
+        """
+        Get the full history of performed operations.
+
+        Returns:
+        List[OperationCommand]: The list of all performed operations.
+        """
+        return self.history_manager.get_full_history()
+
+    def undo(self) -> Union['OperationCommand', None]:
+        """
+        Undo the last operation.
+
+        Returns:
+        Union[OperationCommand, None]: The last operation that was undone, or None if history is empty.
+        """
+        return self.history_manager.undo_last()
+
+    def clear_history(self) -> None:
+        """Clear the entire calculator history."""
+        self.history_manager.clear_history()
