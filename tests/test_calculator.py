@@ -1,9 +1,11 @@
-import pytest
+"""
+Tests for the Calculator class.
+"""
+
 from unittest.mock import Mock
 from app.calculation import Calculation
 from app.calculator import Calculator
 from app.history_manager import OperationCommand
-
 
 def test_perform_operation():
     """
@@ -12,7 +14,6 @@ def test_perform_operation():
     # Create a mock Calculation object
     mock_operation = Mock(spec=Calculation)
     mock_operation.compute.return_value = 15  # Set compute return value
-    
     # Create an instance of the Calculator
     calculator = Calculator()
 
@@ -25,7 +26,6 @@ def test_perform_operation():
     history = calculator.get_history()
     assert len(history) == 1
     assert isinstance(history[0], OperationCommand)
-
 
 def test_get_history():
     """
@@ -51,7 +51,6 @@ def test_get_history():
     # Ensure the history contains OperationCommand objects
     assert isinstance(history[0], OperationCommand)
     assert isinstance(history[1], OperationCommand)
-
 
 def test_undo():
     """
