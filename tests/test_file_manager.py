@@ -1,11 +1,13 @@
-import os
+"""
+Tests for the FileManager class.
+"""
+# pylint: disable=redefined-outer-name
+
+import logging
 import pytest
 from pyfakefs.fake_filesystem_unittest import Patcher
-import logging
-
 from app.file_manager import FileManager
 
-# Test Cases
 @pytest.fixture
 def fs():
     """Fixture to initialize pyfakefs."""
@@ -15,7 +17,6 @@ def fs():
 def test_write_file_positive(fs, caplog):
     """Test writing to a file successfully."""
     file_manager = FileManager("test_file.txt")
-    
     with caplog.at_level(logging.INFO):
         file_manager.write_file("Hello, World!")
 
@@ -23,11 +24,10 @@ def test_write_file_positive(fs, caplog):
     assert fs.fs.exists("test_file.txt")
 
     # Read the content to verify
-    with open("test_file.txt", 'r') as file:
+    with open("test_file.txt", 'r', encoding='utf-8') as file:
         content = file.read()
         assert content == "Hello, World!"
-    
-    # Check logging without quotes around the filename
+
     assert "Successfully wrote to file: test_file.txt" in caplog.text
 
 def test_read_file_positive(fs, caplog):
@@ -58,7 +58,7 @@ def test_delete_file_positive(fs, caplog):
     # Check logging without quotes around the filename
     assert "Successfully deleted file: test_file.txt" in caplog.text
 
-def test_read_file_negative(fs, caplog):
+def test_read_file_negative(caplog):
     """Test reading from a non-existent file."""
     file_manager = FileManager("non_existent_file.txt")
 
@@ -69,7 +69,7 @@ def test_read_file_negative(fs, caplog):
     # Check logging without quotes around the filename
     assert "File not found: non_existent_file.txt" in caplog.text
 
-def test_delete_file_negative(fs, caplog):
+def test_delete_file_negative(caplog):
     """Test deleting a non-existent file."""
     file_manager = FileManager("non_existent_file.txt")
 
