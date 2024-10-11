@@ -74,6 +74,8 @@ Available commands:
   subtract a b   - Subtracts b from a
   multiply a b   - Multiplies a and b
   divide a b     - Divides a by b
+  save           - Saves the operation history to a file
+  load           - Loads the operation history from a file
   history        - Shows the operation history
   undo           - Undoes the last operation
   clear          - Clears the operation history
@@ -102,7 +104,7 @@ Available commands:
         """Clears the operation history."""
         self.calculator.clear_history()
         print("History cleared.")
-        
+
     def save_history(self) -> None:
         """Saves the operation history to a file."""
         history = self.calculator.get_history()
@@ -131,6 +133,10 @@ def main():
             break
         elif command == 'help':
             processor.show_help()
+        elif command == 'save':
+            processor.save_history()
+        elif command == 'load':
+            processor.load_history()
         elif command == 'history':
             processor.show_history()
         elif command == 'undo':
