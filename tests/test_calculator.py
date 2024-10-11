@@ -89,7 +89,6 @@ def test_undo():
     last_operation = calculator.undo()
     assert last_operation is None
 
-
 def test_clear_history():
     """
     Test that Calculator can clear the history.
