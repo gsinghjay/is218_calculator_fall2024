@@ -136,6 +136,10 @@ def main():
             processor.undo_last()
         elif command == 'clear':
             processor.clear_history()
+        elif command == 'save':
+            processor.save_history()
+        elif command == 'load':
+            processor.load_history()
         else:
             processor.execute(command)
 
